@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/coverActive.png</file>
+        <file>res/coverInActive.png</file>
+    </qresource>
+</RCC>
