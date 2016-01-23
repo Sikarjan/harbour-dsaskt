@@ -46,7 +46,7 @@ CoverBackground {
     Image {
         id: statusImage
         anchors.centerIn: parent
-        source: hero.availableAp === 0 ? ("qrc:res/coverInActive.png"):("qrc:res/coverActive.png")
+        source: hero.availableAp - hero.usedAp < 1 ? ("qrc:res/coverInActive.png"):("qrc:res/coverActive.png")
     }
 
     Label {
@@ -57,7 +57,7 @@ CoverBackground {
             topMargin: Theme.paddingLarge
         }
 
-        text: hero.availableAp === 0 ? "" : hero.availableAp + " APs"
+        text: hero.availableAp === 0 ? "" : hero.availableAp - hero.usedAp + qsTr(" EPs")
     }
 
 

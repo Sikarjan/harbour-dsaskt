@@ -8,12 +8,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This app calculates the APs required to upgrade a skill, spell or attribute. The used cost table is based on the the rule set 4.1.
-
-To undo and upgrade delete the upgarde from the log list.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Please send me an email for feedback or improvement ideas:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -21,11 +15,68 @@ To undo and upgrade delete the upgarde from the log list.</source>
         <source>Get in touch</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>This app calculates the required experience points to upgrade a skill, spell or attribute. First you need to create a new hero via the pull down menu. Choose a name and the rule set you want to use for upgrading as well as the current and used experience of this hero.
+    In the upgrade page choose the correct column or ‘Non skill’ in case you want to enter direct costs. Then choose from where to where you improve a skill. Hit the upgrade button to execute the upgrade. To undo and upgrade delete the upgrade from the log list or chose the clear all option from the pull down menu.
+    To save the changes to your hero use the save option from the pull down menu. You can always change the available and used experience points by tapping on them.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AddPage</name>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert hero a name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hero name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upgrade rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dark Eye</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter your EPs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hero&apos;s experience</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter used EPs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Used experience</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CoverPage</name>
     <message>
         <source>DSA SKT App</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> EPs</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -36,23 +87,64 @@ To undo and upgrade delete the upgarde from the log list.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Add Hero</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>DSA SKT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enter your APs</source>
+        <source>Dear Traveller
+
+Add a new Hero via the pull down menu. See the about page for more instructions.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Available APs</source>
+        <source>Deleting hero</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Used APs</source>
+        <source>Experience</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Used</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete hero</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UpgradePage</name>
+    <message>
+        <source>Clear all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DSA SKT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>rules: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Available EPs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Used EPs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Column:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Non skills</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -84,6 +176,18 @@ To undo and upgrade delete the upgarde from the log list.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Skills</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Misc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Current Value:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -92,15 +196,23 @@ To undo and upgrade delete the upgarde from the log list.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Misc EX cost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Upgrade for </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Not enough APs</source>
+        <source> EP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Deleting upgrade</source>
+        <source>Not enough EPs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Column </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -112,15 +224,27 @@ To undo and upgrade delete the upgarde from the log list.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Non skill</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> for </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleting upgrade</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> EPs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Delete upgrade</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Column </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Clear all</source>
+        <source>Save hero</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

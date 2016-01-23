@@ -30,25 +30,23 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import QtQuick.LocalStorage 2.0
 
-import "../js/logic.js" as Logic
-
+import "../js/storage.js" as Storage
 
 Page {
-    id: page
+    id: firstPage
 
-    property int apCost: 0
-    property int uid: 0
-
-    ListModel {
-        id: upgradeModel
+    onStatusChanged: {
+        if(status === PageStatus.Activating) {
+            heroModel.clear()
+            Storage.getHeros()
+        }
     }
 
     // To enable PullDownMenu, place our content in a SilicaFlickable
     SilicaFlickable {
         anchors.fill: parent
-
-        VerticalScrollDecorator { flickable: upgradeList }
 
         // PullDownMenu and PushUpMenu must be declared in SilicaFlickable, SilicaListView or SilicaGridView
         PullDownMenu {
@@ -57,185 +55,102 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
             MenuItem {
-                visible: uid != 0
-                text: qsTr("Clear all")
-                onClicked: {
-                    apCost = 0
-                    uid = 0
-                    hero.availableAp = 0
-                    hero.usedAp = 0
-                    upgradeModel.clear()
-                }
+                text: qsTr("Add Hero")
+                onClicked: pageStack.push(Qt.resolvedUrl("AddPage.qml"))
             }
-        }
-
-        // Tell SilicaFlickable the height of its content.
-        contentHeight: page.height
-
-        // Place our content in a Column.  The PageHeader is always placed at the top
-        // of the page, followed by our content.
-        Column {
-            id: column
-            width: page.width
-            //anchors.fill: parent
-            spacing: 0 //Theme.paddingSmall
-            PageHeader {
-                title: qsTr("DSA SKT")
-            }
-
-            Row {
-                id: titleRow
-                width: page.width
-
-                TextField {
-                    id: availableApField
-                    width: page.width/2
-
-                    placeholderText: qsTr("Enter your APs")
-                    text: hero.availableAp === 0 ? "" : hero.availableAp.toString()
-                    inputMethodHints: Qt.ImhDigitsOnly
-                    validator: IntValidator { bottom: 0; top: 99999 }
-                    label: qsTr("Available APs")
-
-                    EnterKey.iconSource: "image://theme/icon-m-enter-next"
-                    EnterKey.onClicked: upgradeColumn.focus = true
-
-                    onTextChanged: hero.availableAp = text*1
-                }
-
-                TextField {
-                    id: usedApField
-                    width: page.width/2
-
-                    readOnly: true
-                    horizontalAlignment: TextInput.AlignRight
-                    text: hero.usedAp === 0 ? "" : hero.usedAp + " AP"
-                    label: qsTr("Used APs")
-                }
-            }
-
-            ComboBox {
-                id: upgradeColumn
-                width: parent.width
-                label: qsTr("Column:")
-                currentIndex: 2
-
-                menu: ContextMenu {
-                    MenuItem { text: qsTr("A+: Special upgrades")}
-                    MenuItem { text: qsTr("A: Languages")}
-                    MenuItem { text: qsTr("B: Non body skills")}
-                    MenuItem { text: qsTr("C: Fighting skills")}
-                    MenuItem { text: qsTr("D: Body skills")}
-                    MenuItem { text: "E: AU"}
-                    MenuItem { text: qsTr("F: Gifts")}
-                    MenuItem { text: "G: AE"}
-                    MenuItem { text: qsTr("H: Properties, LE, MR")}
-                }
-
-                onCurrentIndexChanged: apCost = Logic.upgardeCost(upgradeColumn.currentIndex, fromSlider.value, toSlider.value)
-            }
-
-            Slider {
-                id: fromSlider
-                width: parent.width
-                label: qsTr("Current Value:")
-                value: 1
-                minimumValue: 1
-                maximumValue: 30
-                stepSize: 1
-                valueText: value
-
-                onValueChanged: {
-                    toSlider.minimumValue = value + 1
-                    toSlider.value = value + 1
-                }
-            }
-
-
-            Slider {
-                id: toSlider
-                width: parent.width
-                label: qsTr("Upgrade Value:")
-                value: 1
-                minimumValue: 1
-                maximumValue: 31
-                stepSize: 1
-                valueText: value
-
-                onValueChanged: apCost = Logic.upgardeCost(upgradeColumn.currentIndex, fromSlider.value, toSlider.value)
-            }
-
-            Button {
-                id: upgradeButton
-
-                visible: apCost != 0 && hero.availableAp != 0
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: hero.availableAp - apCost >= 0 ? qsTr("Upgrade for ") + apCost + " AP" : qsTr("Not enough APs")
-
-                onClicked: {
-                    if(hero.availableAp - apCost >= 0){
-                        hero.availableAp = hero.availableAp - apCost
-                        hero.usedAp = hero.usedAp + apCost
-                        uid++
-                        var col = upgradeColumn.currentIndex === 0 ? "A+": upgradeColumn.value.charAt(0)
-                        var log = (uid <= 9 ? "0":"") + uid + ": " + qsTr("Column ") + col + qsTr(" from ") + fromSlider.value + qsTr(" to ") + toSlider.value + " -> "
-                        upgradeModel.insert(0,{"log": log, "ap": apCost})
-                    }
-                }
-            }
-
         }
 
         SilicaListView {
-            id: upgradeList
-            width: page.width
-            height: page.height - column.height
-            anchors.top: column.bottom
-            clip: true
+            id: heroList
+            anchors.fill: parent
+            model: heroModel
+            VerticalScrollDecorator {}
 
-            model: upgradeModel
+            header: PageHeader {
+                id: header
+                title: qsTr("DSA SKT")
+            }
+
+            ViewPlaceholder {
+                enabled: heroList.count === 0
+                text: qsTr("Dear Traveller
+
+Add a new Hero via the pull down menu. See the about page for more instructions.")
+            }
 
             delegate: ListItem {
-                id: upgradeItem
-                width: ListView.view.width
-                contentHeight: logEntry.height
-                ListView.onRemove: animateRemoval(upgradeItem)
+                id: heroItem
+                menu: contextMenu
+                contentHeight: Theme.itemSizeMedium // two line delegate
+                ListView.onRemove: animateRemoval(heroItem)
 
                 function remove() {
-                    var remorse = remorseAction(qsTr("Deleting upgrade"), function() {
-                        hero.availableAp = hero.availableAp + upgradeList.model.get(index).ap
-                        hero.usedAp = hero.usedAp - upgradeList.model.get(index).ap
-                        upgradeList.model.remove(index)
+                    remorseAction(qsTr("Deleting hero"), function() {
+                        Storage.deleteHero(uid)
+                        heroList.model.remove(index)
                     });
-                    remorse.canceled.connect(function() { logEntry.height = Theme.itemSizeSmall/1.8 })
                 }
 
-                  Label {
-                    id: logEntry
-                    height: Theme.itemSizeSmall/1.8
+                onClicked: {
+                    hero.heroID = uid
+                    hero.heroChanged = true
+                    pageStack.push(Qt.resolvedUrl("UpgradePage.qml"))
+                }
+
+                Label {
+                    id: nameLabel
                     anchors {
                         left: parent.left
-                        right: parent.right
                         leftMargin: Theme.paddingLarge
                     }
-                    text:  log + ap + " APs"
-                    color: upgradeItem.highlighted ? Theme.highlightColor : Theme.primaryColor
-                    font.pixelSize: Theme.fontSizeMedium
+                    text: heroName
+                    font.pixelSize: Theme.fontSizeLarge
+//                    color: heroItem.highlighted ? Theme.highlightColor : Theme.primaryColor
                 }
 
-                menu: ContextMenu {
-                    MenuItem {
-                        text: qsTr("Delete upgrade")
-                        onClicked: {
-                            logEntry.height = Theme.itemSizeSmall
-                            remove()
-                        }
+                Label {
+                    anchors {
+                        right: parent.right
+                        rightMargin: Theme.paddingLarge
+                    }
+                    text: rules == 0 ? "4.1":"5.0"
+                    font.pixelSize: Theme.fontSizeSmall
+//                    color: heroItem.highlighted ? Theme.highlightColor : Theme.primaryColor
+                }
 
+                Label {
+                    anchors {
+                        top: nameLabel.bottom
+                        left: parent.left
+                        leftMargin: Theme.paddingLarge
+                    }
+                    text: qsTr("Experience")+": "+ap
+                    font.pixelSize: Theme.fontSizeMedium
+ //                   color: heroItem.highlighted ? Theme.highlightColor : Theme.primaryColor
+                }
+
+                Label {
+                    anchors {
+                        top: nameLabel.bottom
+                        right: parent.right
+                        rightMargin: Theme.paddingLarge
+                    }
+                    text: qsTr("Used")+": "+usedAp
+                    font.pixelSize: Theme.fontSizeMedium
+ //                   color: heroItem.highlighted ? Theme.highlightColor : Theme.primaryColor
+                }
+
+                Component{
+                    id: contextMenu
+                    ContextMenu {
+                        MenuItem {
+                            text: qsTr("Delete hero")
+                            onClicked: remove()
+                        }
                     }
                 }
             }
-        } // End ListView
+        }
     }
 }
-
 

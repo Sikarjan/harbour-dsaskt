@@ -8,10 +8,15 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
-* Sat May 03 2015 FloR707 <shop@example.com> 0.0.2-1
+* Wed Sat 23 2016 Sikarjan <Sikarjan@users.noreply.github.com> 1.0-1
+- New DSA 5.0 compatibility
+- New manage heros
+- New enter upgrade costs not covered by SKT
+
+* Sat May 03 2015 Sikarjan <Sikarjan@users.noreply.github.com> 0.2-1
 - New Logo
 - Contact button in About Page
-* Sat Apr 25 2015 FloR707 <shop@example.com> 0.0.1-1
+* Sat Apr 25 2015 Sikarjan <Sikarjan@users.noreply.github.com> 0.1-1
 - Scrubbed the deck
 - Hoisted the sails
 

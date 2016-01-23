@@ -30,19 +30,36 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import QtQuick.LocalStorage 2.0
+
 import "pages"
+import "js/storage.js" as Storage
 
 ApplicationWindow
 {
+    id:main
     initialPage: Component { FirstPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
+
+    Component.onCompleted: {
+        Storage.initialize();
+    }
 
     Item {
         id: hero
 
+        property int heroID: -1
+        property bool heroChanged: false
         property int availableAp: 0
         property int usedAp: 0
+        property int rules: 4
+        property string heroName: ""
     }
+
+    ListModel {
+        id: heroModel
+    }
+
 }
 
 

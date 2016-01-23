@@ -13,7 +13,7 @@ Name:       harbour-dsaskt
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    DSA Upgrade App
-Version:    0.2
+Version:    1.0
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE
@@ -66,6 +66,6 @@ desktop-file-install --delete-original       \
 %{_bindir}
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/hicolor/86x86/apps/%{name}.png
+%{_datadir}/icons/hicolor/*/apps/%{name}.png
 # >> files
 # << files
