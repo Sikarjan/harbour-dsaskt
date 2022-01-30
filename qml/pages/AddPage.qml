@@ -78,6 +78,8 @@ Dialog {
                 label: qsTr("Used experience")
 
                 onTextChanged: hero.availableAp = text*1
+
+                EnterKey.onClicked: page.accept()
             }
         }
     }

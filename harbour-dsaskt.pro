@@ -27,7 +27,7 @@ OTHER_FILES += qml/harbour-dsaskt.qml \
     qml/pages/AboutPage.qml \
     qml/js/logic.js
 
-SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
+SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172 256x256
 
 # to disable building translations every time, comment out the
 # following CONFIG line
@@ -43,6 +43,7 @@ RESOURCES += \
     res.qrc
 
 DISTFILES += \
+    qml/components/ButtonSlider.qml \
     qml/js/storage.js \
     qml/pages/AddPage.qml \
     qml/pages/UpgradePage.qml

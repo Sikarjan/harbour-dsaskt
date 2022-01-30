@@ -21,7 +21,7 @@ Page {
             }
 
             Label {
-                text: "Version: 1.0"
+                text: "Version: 1.2"
             }
 
             Text {
@@ -40,7 +40,7 @@ Page {
                 textFormat: Text.RichText
                 font.pixelSize: Theme.fontSizeSmall
                 color: Theme.primaryColor
-                text: qsTr("Please send me an email for feedback or improvement ideas:")
+                text: qsTr("Please send me an email for feedback or improvement ideas.")
             }
 
             Button {

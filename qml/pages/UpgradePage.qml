@@ -4,6 +4,7 @@ import QtQuick.LocalStorage 2.0
 
 import "../js/storage.js" as Storage
 import "../js/logic.js" as Logic
+import "../components"
 
 
 Page {
@@ -66,7 +67,7 @@ Page {
             width: page.width-2*Theme.paddingMedium
             x: Theme.paddingMedium
             spacing: Theme.paddingSmall
-            visible: hero.heroID != -1
+            visible: hero.heroID !== -1
 
             PageHeader {
                 id: header
@@ -188,16 +189,16 @@ Page {
                 }
             }
 
-            Slider {
+            ButtonSlider {
                 id: fromSlider
                 width: parent.width
                 visible: showSlider
                 label: qsTr("Current Value:")
                 value: 1
-                minimumValue: 1
+                minimumValue: hero.rules === 0 ? -5:0
                 maximumValue: 30
                 stepSize: 1
-                valueText: value
+//                valueText: value
 
                 onValueChanged: {
                     toSlider.minimumValue = value + 1
@@ -206,19 +207,19 @@ Page {
             }
 
 
-            Slider {
+            ButtonSlider {
                 id: toSlider
                 width: parent.width
                 visible: showSlider
                 label: qsTr("Upgrade Value:")
                 value: 1
-                minimumValue: 1
+                minimumValue: hero.rules === 0 ? -4:0
                 maximumValue: 31
                 stepSize: 1
-                valueText: value
+//                valueText: value
 
                 onValueChanged: {
-                    if(hero.rules == 0){
+                    if(hero.rules === 0){
                         apCost = Logic.upgardeCost(upgradeColumn4.currentIndex-1, fromSlider.value, toSlider.value)
                     }else{
                         apCost = Logic.upgardeCost5(upgradeColumn5.currentIndex-1, fromSlider.value, toSlider.value)

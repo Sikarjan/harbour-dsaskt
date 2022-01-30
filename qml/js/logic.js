@@ -32,7 +32,19 @@ var skt = [[1,1,2,3,4,5,7.5,10,20],
            [661,720,1441,2150,2875,3605,5405,7213,14386]];
 
 function upgardeCost(column, from, to) {
-    return skt[to][column] - skt[from][column];
+    var cost = 0;
+
+    if(from < 1){
+        if(to < 1){
+            cost = (from - to)*-1*skt[0][column];
+        }else{
+            cost = from*-1*skt[0][column] + skt[to][column];
+        }
+    }else{
+        cost = skt[to][column] - skt[from][column];
+    }
+
+    return cost;
 }
 
 var skt5 = [

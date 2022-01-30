@@ -1,22 +1,21 @@
-# Rename this file as harbour-dsaskt.changes to include changelog
-# entries in your RPM file.
-#
-# Add new changelog entries following the format below.
-# Add newest entries to the top of the list.
-# Separate entries from eachother with a blank line.
+* Sun Jan 30 2022 Sikarjan 1.2-1
+- New added activation for talents in rule set 4.1
+- Fixed button slider, slider overlapping buttons
 
-# * date Author's Name <author's email> version-release
-# - Summary of changes
+* Tue Jun 16 2020 Sikarjan 1.1-1
+- New sliders on upgrade page
+- New enter on last input filed accepts hero
 
-* Wed Sat 23 2016 Sikarjan <Sikarjan@users.noreply.github.com> 1.0-1
+* Wed Sat 23 2016 Sikarjan 1.0-1
 - New DSA 5.0 compatibility
 - New manage heros
 - New enter upgrade costs not covered by SKT
 
-* Sat May 03 2015 Sikarjan <Sikarjan@users.noreply.github.com> 0.2-1
+* Sat May 03 2015 Sikarjan 0.2-1
 - New Logo
 - Contact button in About Page
-* Sat Apr 25 2015 Sikarjan <Sikarjan@users.noreply.github.com> 0.1-1
+
+* Sat Apr 25 2015 Sikarjan 0.1-1
 - Scrubbed the deck
 - Hoisted the sails
 
