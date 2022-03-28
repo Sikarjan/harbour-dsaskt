@@ -14,6 +14,16 @@ function initialize() {
                                     'availableAp INTEGER,' +
                                     'usedAp INTEGER)' );
                 });
+
+    var dbUpgrade = getDatabase();
+    dbUpgrade.transaction(
+                function(tx) {
+                    tx.executeSql('CREATE TABLE IF NOT EXISTS upgrades ('+
+                        'heroId INTEGER,' +
+                        'ap INTEGER,' +
+                        'upNote TEXT,' +
+                        'date TEXT)' );
+                });
 }
 
 function addHero(name, rules, availableAp, usedAp) {
@@ -58,7 +68,7 @@ function getHeros() {
     var db = getDatabase();
     var res = 0;
     db.transaction(function(tx) {
-        var rs = tx.executeSql('SELECT rowid, heroName, availableAp, usedAp, rules FROM heros');
+        var rs = tx.executeSql('SELECT rowid, heroName, availableAp, usedAp, rules FROM heros ORDER BY heroName ASC');
         res = rs.rows.length
         for (var i = 0; i < rs.rows.length; i++) {
             heroModel.append({"heroName": rs.rows.item(i).heroName, "ap": rs.rows.item(i).availableAp, "usedAp": rs.rows.item(i).usedAp, "rules": rs.rows.item(i).rules, "uid": rs.rows.item(i).rowid})
@@ -70,8 +80,37 @@ function getHeros() {
 function deleteHero(index){
     var db = getDatabase();
 
-        db.transaction(function(tx) {
-            var rs = tx.executeSql('DELETE FROM heros WHERE rowid=?;', [index]);
-        });
+    db.transaction(function(tx) {
+        var rs = tx.executeSql('DELETE FROM heros WHERE rowid=?;', [index]);
+    });
 
+    db.transaction(function(tx) {
+        var rs = tx.executeSql('DELETE FROM upgrades WHERE heroId=?;', [index]);
+    });
+
+}
+
+// This handles the upgarade log
+function saveUpgrades(id, ap, note){
+    var db  = getDatabase();
+    var res = 0;
+    db.transaction(function(tx) {
+        var rs = tx.executeSql('INSERT INTO upgrades '+
+                               ' VALUES (?,?,?,datetime("now", "localtime"));', [id, ap, note]);
+        res = rs.rowsAffected > 0 ? rs.insertId:-2;
+    });
+    return res;
+}
+
+function loadUpgrades (id){
+    var db = getDatabase();
+    var res = 0;
+    db.transaction(function(tx) {
+        var rs = tx.executeSql('SELECT ap, upNote, date FROM upgrades WHERE heroId=? ORDER BY rowid DESC', [id]);
+        res = rs.rows.length
+        for (var i = 0; i < res; i++) {
+            histUpgradeModel.append({"ap": rs.rows.item(i).ap, "note": rs.rows.item(i).upNote, "date": rs.rows.item(i).date})
+        }
+    });
+    return res
 }

@@ -40,7 +40,7 @@ Item {
         minimumValue: root.minimumValue
         maximumValue: root.maximumValue
         stepSize: root.stepSize
-        valueText: value + " " + root.unit
+        valueText: root.value + " " + root.unit
 
         onValueChanged: root.value = value
     }

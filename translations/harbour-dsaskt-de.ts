@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="de_DE" sourcelanguage="en">
 <context>
     <name>AboutPage</name>
     <message>
@@ -21,7 +21,7 @@
     </message>
     <message>
         <source>Please send me an email for feedback or improvement ideas.</source>
-        <translation type="unfinished"></translation>
+        <translation>Schicke mir bitte eine Email oder hinterlasse eine Eintrag auf GitHub, falls es ein Feeback oder Verbesserungsideen gibt.</translation>
     </message>
 </context>
 <context>
@@ -79,7 +79,7 @@
     </message>
     <message>
         <source> EPs</source>
-        <translation>APs</translation>
+        <translation> APs</translation>
     </message>
 </context>
 <context>
@@ -250,6 +250,14 @@ Füge einen euen Helden über das Pull Down Menü hinzu. Eine ausführliche Anle
     <message>
         <source>Save hero</source>
         <translation>Held speichern</translation>
+    </message>
+    <message>
+        <source>Note</source>
+        <translation>Anmerkung</translation>
+    </message>
+    <message>
+        <source>Previous Upgrades</source>
+        <translation>Alte Steigerungen</translation>
     </message>
 </context>
 </TS>

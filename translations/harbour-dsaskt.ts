@@ -247,5 +247,13 @@ Add a new Hero via the pull down menu. See the about page for more instructions.
         <source>Save hero</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Note</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous Upgrades</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

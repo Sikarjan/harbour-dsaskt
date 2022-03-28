@@ -1,3 +1,8 @@
+* Mon Mar 28 2022 Sikarjan 2.0-1
+- Fixed negative upgrade costs if to slider less than from slider
+- New added option to add a note to an upgrade
+- New historic upgrades will be saved and displayed next time as old upgrades
+
 * Sun Jan 30 2022 Sikarjan 1.2-1
 - New added activation for talents in rule set 4.1
 - Fixed button slider, slider overlapping buttons
